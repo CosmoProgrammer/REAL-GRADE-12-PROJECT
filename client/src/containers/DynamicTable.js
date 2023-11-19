@@ -1,6 +1,6 @@
 import React from "react";
 
-const DynamicTable = ({ schema, data }) => {
+const DynamicTable = ({ schema, data, onEdit }) => {
   const buildHeaders = () => {
     return schema.map((column, i) => {
       return (
@@ -31,6 +31,12 @@ const DynamicTable = ({ schema, data }) => {
                       <td key={`${i}-${j}-${k}`}>{row[j][k]}</td>
                     ))}
                   </tr>
+                </td>
+              );
+            } else if (column.name === "Edit") {
+              return (
+                <td key={`${i}-${j}`}>
+                  <button onClick={() => onEdit(row[0])}>Edit</button>
                 </td>
               );
             } else {

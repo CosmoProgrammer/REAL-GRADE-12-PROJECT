@@ -6,6 +6,7 @@ import NoPageFound from "./containers/NoPageFound";
 import Ribbon from "./containers/Ribbon";
 import HomePage from "./containers/Home";
 import ConfigPage from "./containers/ConfigPage";
+import EditRow from "./containers/EditPage";
 
 const client = axios.create({
   baseURL: "http://127.0.0.1:5000/",
@@ -21,6 +22,11 @@ function App() {
           path="/configpage"
           exact
           element={<ConfigPage client={client} />}
+        />
+        <Route
+          path="/editrow/:id"
+          exact
+          element={<EditRow client={client} />}
         />
         <Route path="*" element={<NoPageFound />} />
       </Switch>

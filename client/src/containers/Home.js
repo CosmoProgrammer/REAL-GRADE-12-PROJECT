@@ -1,7 +1,9 @@
 import React from "react";
 import Table from "./DynamicTable";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = (props) => {
+  const navigate = useNavigate();
   //Insert method to retrieve data from the server here
   const schema = [
     { name: "ID", type: "number", subColumns: [] },
@@ -24,6 +26,7 @@ const HomePage = (props) => {
         { name: "Smell", type: "string" },
       ],
     },
+    { name: "Edit", type: "button", subColumns: [] },
   ];
 
   const data = [
@@ -32,7 +35,11 @@ const HomePage = (props) => {
     [3, "NonPublic", [5, 5], "Cooking", ["Spicy", "Green", "None"]],
   ];
 
-  return <Table schema={schema} data={data} />;
+  const onEdit = (id) => {
+    navigate(`/editrow/${id}`);
+  };
+
+  return <Table schema={schema} data={data} onEdit={onEdit} />;
 };
 
 export default HomePage;
