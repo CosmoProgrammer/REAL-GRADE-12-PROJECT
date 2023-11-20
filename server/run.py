@@ -11,6 +11,7 @@ def helloWorld():
 
 @app.route('/config', methods=['POST'])
 def handle_config():
+   #{'schema': [{'name': 'ID', 'type': 'number', 'subColumns': []}, {'name': 'Public/NonPublic', 'type': 'string', 'subColumns': []}, {'name': 'Qty', 'type': 'number', 'subColumns': [{'name': 'Public', 'type': 'number'}, {'name': 'Private', 'type': 'number'}]}, {'name': 'Industry', 'type': 'string', 'subColumns': []}, {'name': 'ExpiryDate', 'type': 'date', 'subColumns': []}, {'name': 'Type', 'type': 'string', 'subColumns': [{'name': 'Taste', 'type': 'string'}, {'name': 'Smell', 'type': 'string'}, {'name': 'Colour', 'type': 'string'}]}], 'users': [{'username': 'Anirudh', 'password': 'test1234', 'accessLevel': 'Admin'}, {'username': 'UserMax', 'password': 'qwerty', 'accessLevel': 'Level 1'}, {'username': 'Laaksh', 'password': 'KrishHasAnAss', 'accessLevel': 'Level 3'}]}   '''
     data = request.get_json()
     print(data)
     return {"message": "Config received"}, 200
@@ -35,6 +36,8 @@ def post_row(id):
    # Hurry up just a little, thank you
    updated_row_data = request.get_json()
    return jsonify(updated_row_data), 200
+
+#Another login function, Ill send you credentials and you will have to validate
 
 if __name__ == '__main__':
    app.run()
