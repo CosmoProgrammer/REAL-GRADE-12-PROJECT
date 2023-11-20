@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "./DynamicTable";
 import { useNavigate } from "react-router-dom";
 
-const HomePage = (props) => {
+const HomePage = ({ client }) => {
   const navigate = useNavigate();
-  //Insert method to retrieve data from the server here
+  /*const [tableData, setTableData] = useState([]);
+  const [schema, setSchema] = useState({});
+
+ useEffect(() => {
+   client
+     .get(`getdata`)
+     .then((response) => {
+       setTableData(response.data);
+       setSchema(response.schema);
+     })
+     .catch((error) => {
+       console.error("Error fetching data: ", error);
+     });
+  }, []);*/
+
   const schema = [
     { name: "ID", type: "number", subColumns: [] },
     { name: "Public/NonPublic", type: "string", subColumns: [] },

@@ -97,6 +97,11 @@ const ConfigPage = (props) => {
 
   return (
     <div className="inventory-schema-editor">
+      <strong>
+        NOTE THAT THIS WILL CLEAR ALL YOUR DATA. PROCEED WITH CARE.
+      </strong>
+      <br />
+      <br />
       <fieldset>
         <legend>Schema</legend>
         <table>

@@ -23,6 +23,7 @@ const EditRow = ({ client }) => {
       .post(`postrow/${id}`, rowData)
       .then((response) => {
         console.log("Row updated: ", response.data);
+        navigate("/home");
       })
       .catch((error) => {
         console.error("Error updating row: ", error);
@@ -44,20 +45,26 @@ const EditRow = ({ client }) => {
                   <td>{key}</td>
                   <td>
                     {Array.isArray(subValue) ? (
-                      subValue.map((subSubValue, subIndex) => (
-                        <input
-                          type="text"
-                          value={subSubValue}
-                          onChange={(e) => {
-                            const newValue = [...rowData[key]];
-                            newValue[index][subIndex] = e.target.value;
-                            setRowData({
-                              ...rowData,
-                              [key]: newValue,
-                            });
-                          }}
-                        />
-                      ))
+                      subValue.map((subSubValue, subIndex) =>
+                        index === 0 ? (
+                          <>{subSubValue}&#9;&#9;&#9;&#9;</>
+                        ) : (
+                          <input
+                            type="text"
+                            value={subSubValue}
+                            onChange={(e) => {
+                              const newValue = [...rowData[key]];
+                              newValue[index][subIndex] = e.target.value;
+                              setRowData({
+                                ...rowData,
+                                [key]: newValue,
+                              });
+                            }}
+                          />
+                        )
+                      )
+                    ) : index === 0 ? (
+                      <p>{subValue}</p>
                     ) : (
                       <input
                         type="text"
