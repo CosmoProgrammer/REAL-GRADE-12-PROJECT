@@ -1,0 +1,17 @@
+.search-bar {
+  width: 100%;
+  margin-bottom: 50px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.search-bar:focus {
+  outline: none;
+  box-shadow: 2px 3px 20px 1px rgba(0, 0, 0, 0.3);
+}
+
+.search-bar::placeholder {
+  color: #b3b3b3;
+}

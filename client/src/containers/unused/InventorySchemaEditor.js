@@ -5,16 +5,11 @@ import "../styles/InventorySchemaEditor.css";
 function InventorySchemaEditor() {
   const [columns, setColumns] = useState([
     { name: "ID", type: "number" },
-    { name: "Public/NonPublic", type: "string" },
+    { name: "Name", type: "string" },
     {
       name: "Qty",
       type: "number",
-      subColumns: [
-        { name: "Public", type: "number" },
-        { name: "Private", type: "number" },
-      ],
     },
-    { name: "Industry", type: "string" },
   ]);
 
   const [newColumnName, setNewColumnName] = useState("");

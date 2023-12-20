@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Table from "./DynamicTable";
 import { useNavigate } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const HomePage = ({ client }) => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const HomePage = ({ client }) => {
       ],
     },
     { name: "Edit", type: "button", subColumns: [] },
+    { name: "Delete", type: "button", subColumns: [] },
   ];
 
   const data = [
@@ -49,11 +51,57 @@ const HomePage = ({ client }) => {
     [3, "NonPublic", [5, 5], "Cooking", ["Spicy", "Green", "None"]],
   ];
 
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  const filteredData = data.filter((row) => {
+    return row.some((item) => {
+      return item.toString().toLowerCase().includes(searchQuery.toLowerCase());
+    });
+  });
+
   const onEdit = (id) => {
     navigate(`/editrow/${id}`);
   };
 
-  return <Table schema={schema} data={data} onEdit={onEdit} />;
+  const onDelete = (id) => {
+    client
+      .post(`deleterow/${id}`)
+      .then((response) => {
+        console.log("Row delete: ", response.data);
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error("Error updating row: ", error);
+      });
+  };
+
+  const onAdd = (id) => {
+    navigate(`/addrow/yOOL87zO4R0VL2Whc29P`);
+  };
+
+  return (
+    <>
+      <br />
+      <br />
+      <SearchBar onSearch={handleSearch} />
+      <br />
+      <br />
+      <Table
+        schema={schema}
+        data={filteredData}
+        onEdit={onEdit}
+        onDelete={onDelete}
+      />
+      <br />
+      <button onClick={() => onAdd()} align="right">
+        Add Entry
+      </button>
+    </>
+  );
 };
 
 export default HomePage;

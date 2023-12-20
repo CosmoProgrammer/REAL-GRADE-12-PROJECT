@@ -8,6 +8,7 @@ import HomePage from "./containers/Home";
 import ConfigPage from "./containers/ConfigPage";
 import EditRow from "./containers/EditPage";
 import LoginPage from "./containers/LoginPage";
+import AddRow from "./containers/AddPage";
 
 const client = axios.create({
   baseURL: "http://127.0.0.1:5000/",
@@ -19,7 +20,7 @@ function App() {
       <Ribbon />
       <Switch>
         <Route path="/" exact element={<LoginPage />} />
-        <Route path="/home" exact element={<HomePage />} />
+        <Route path="/home" exact element={<HomePage client={client} />} />
         <Route
           path="/configpage"
           exact
@@ -30,6 +31,7 @@ function App() {
           exact
           element={<EditRow client={client} />}
         />
+        <Route path="/addrow/:id" exact element={<AddRow client={client} />} />
         <Route path="*" element={<NoPageFound />} />
       </Switch>
     </>
