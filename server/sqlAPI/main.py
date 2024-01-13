@@ -1,12 +1,11 @@
-# import mysql.connector
+import mysql.connector
 from random import randint
 
 subColumnSaltKeys = {}
 schema = {}
 
-# cnx = mysql.connector.connect(
-#     username='root', password='sql123', host='localhost', port='3306', database='project')
-# cur = cnx.cursor()
+cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
+cur = cnx.cursor()
 
 
 def generateSaltKey():
@@ -18,6 +17,12 @@ def generateSaltKey():
 
 
 def createTable(data):
+    cur.execute('drop table if not exists info(value LONGTEXT);')
+    cur.execute('create table if not exists info(value LONGTEXT);')
+    cnx.commit()
+    cur.execute(f"insert into info values (\"{data}\")")
+    cur.execute('drop table if exists inventory;')
+    cnx.commit()
     query = "create table inventory ("
     for dict in data:
         for element in dict:
@@ -27,16 +32,16 @@ def createTable(data):
 
             elif element == 'subColumns' and dict['subColumns'] != []:
                 subColumnSaltKeys[dict['name']] = generateSaltKey()
-                print(subColumnSaltKeys)
+                #print(subColumnSaltKeys)
                 for subcolumn in dict[element]:
                     subcolumn['name'] = subcolumn['name'] + \
                         subColumnSaltKeys[dict['name']]
-                    print(subcolumn)
+                    #print(subcolumn)
                     for subcolumnHeader in subcolumn:
                         query += str(subcolumn[subcolumnHeader]).replace(
                             'string', 'varchar(255)').replace('number', 'integer') + ' '
                     query += ','
-            print(query)
+            #print(query)
         query += ','
     k = 0
     for i in range(len(query) - 1, 0, -1):
@@ -47,18 +52,21 @@ def createTable(data):
 
     query = query[0:-k]
     query += ')'
-    print(query)
+    cur.execute(query)
+    cnx.commit()
 
 
 def getRow(id):
     retDict = {}
-    q = f'select * from inventory where ID={id};'
-    # cur.execute(q)
-    # data = cur.fetchone()
+    q = f"select * from inventory where ID={id};"
+    print(q)
+    cur.execute(q)
+    data = cur.fetchone()
     headers = [i[0] for i in cur.description]
+    print(data,headers)
     for i in range(len(headers)):
         if str(headers[i]) not in subColumnSaltKeys:
-            retDict += {str(headers[i]): data[i]}
+            retDict[str(headers[i])] =  data[i] if data != None else ''
         else:
             subColInds = []
             for j in range(len(headers)):
@@ -70,15 +78,15 @@ def getRow(id):
             retList2 = []
             for j in subColInds:
                 retList2 += [headers[j]]
-            retDict += {str(headers(i)): [retList, retList2]}
+            retDict[str(headers(i))]= [retList, retList2]
     return retDict
 
 def returnAll():
-    #cur.execute('select * from inventory')
-    #data = cur.fetchall()    
-    #headers = [i[0] for i in cur.description]
-    headers = ['ID', 'Public/NonPublic', 'Qty', 'Industry', 'Tasteabcd', 'Colourabcd', 'Smellabcd']
-    data = ((1, 'Public', 10, 'cooking', 'mmm', 'blu-blu', 'ahhaaaa'),(2, 'Public', 3, 'cooking2', 'vack', 'brawn', 'cheee'))
+    cur.execute('select * from inventory')
+    data = cur.fetchall()    
+    headers = [i[0] for i in cur.description]
+    #headers = ['ID', 'Public/NonPublic', 'Qty', 'Industry', 'Tasteabcd', 'Colourabcd', 'Smellabcd']
+    #data = ((1, 'Public', 10, 'cooking', 'mmm', 'blu-blu', 'ahhaaaa'),(2, 'Public', 3, 'cooking2', 'vack', 'brawn', 'cheee'))
     saltKeys = subColumnSaltKeys.values()
     print(saltKeys)
     subcolumnHeaderIndexes = []
@@ -104,7 +112,13 @@ def returnAll():
         if subColumnList != []:
             rowList += [subColumnList]
         returnList += [rowList]
-    print(returnList)
+    #print(returnList)
+    c = cnx.cursor()
+    c.execute('select value from info;')
+    s = c.fetchall()
+    #print("vvvvvvvvvv")
+    #print(s)
+    return({'data':returnList, 'schema': s[0][0]})
 
 def checkSubColums(index, subcolumnHeaderIndexes):
     print(subcolumnHeaderIndexes)
@@ -170,25 +184,27 @@ def updateRow(row_data):
         print(query)
 
 
-# def createLoginTable(data):
-#     query = "create table login (username varchar(255) primary key, password varchar(255), accessLevel varchar(255));"
-#     cur.execute(query)
-#     print(data)
-#     for a in data:
-#         q = f'insert into login values ("{a["username"]}", "{a["password"]}", "{a["accessLevel"]}");'
-#         cur.execute(q)
-#         cnx.commit()
+def createLoginTable(data):
+    cur.execute('drop table if exists login;')
+    cnx.commit()
+    query = "create table login (username varchar(255) primary key, password varchar(255), accessLevel varchar(255));"
+    cur.execute(query)
+    print(data)
+    for a in data:
+        q = f'insert into login values ("{a["username"]}", "{a["password"]}", "{a["accessLevel"]}");'
+        cur.execute(q)
+        cnx.commit()
 
 
-# def login(user, password):
-#     cur.execute('select * from login;')
-#     data = cur.fetchall()
-#     print(data)
-#     for i in data:
-#         if i[0:2] == (user, password):
-#             return True
-#         else:
-#             return False
+def login(user, password):
+    cur.execute('select * from login;')
+    data = cur.fetchall()
+    print(data)
+    for i in data:
+        if i[0:2] == (user, password):
+            return True
+        else:
+            return False
 
 
 data = [

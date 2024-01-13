@@ -5,22 +5,27 @@ import SearchBar from "./SearchBar";
 
 const HomePage = ({ client }) => {
   const navigate = useNavigate();
-  /*const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState([]);
   const [schema, setSchema] = useState({});
+  const [isLoading, setLoading] = useState(true);
 
- useEffect(() => {
-   client
-     .get(`getdata`)
-     .then((response) => {
-       setTableData(response.data);
-       setSchema(response.schema);
-     })
-     .catch((error) => {
-       console.error("Error fetching data: ", error);
-     });
-  }, []);*/
+  useEffect(() => {
+    console.log("USE EFFECT");
+    client
+      .get(`getdata`)
+      .then((response) => {
+        let s = eval(response.data.schema);
+        setTableData(response.data.data);
+        setSchema(s);
+        console.log(tableData, s);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  }, []);
 
-  const schema = [
+  /*const schema = [
     { name: "ID", type: "number", subColumns: [] },
     { name: "Public/NonPublic", type: "string", subColumns: [] },
     {
@@ -49,7 +54,7 @@ const HomePage = ({ client }) => {
     [1, "Public", [5, 10], "Cooking", ["Sweet", "Green", "Pungent"]],
     [2, "Public", [6, 20], "Baking", ["Sour", "Blue", "Pleasant"]],
     [3, "NonPublic", [5, 5], "Cooking", ["Spicy", "Green", "None"]],
-  ];
+  ];*/
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -57,7 +62,7 @@ const HomePage = ({ client }) => {
     setSearchQuery(query);
   };
 
-  const filteredData = data.filter((row) => {
+  const filteredData = tableData.filter((row) => {
     return row.some((item) => {
       return item.toString().toLowerCase().includes(searchQuery.toLowerCase());
     });
@@ -80,9 +85,12 @@ const HomePage = ({ client }) => {
   };
 
   const onAdd = (id) => {
-    navigate(`/addrow/yOOL87zO4R0VL2Whc29P`);
+    navigate(`/addrow/9348023840293848230948`);
   };
 
+  if (isLoading) {
+    return <div className="loadingContainer">Loading</div>;
+  }
   return (
     <>
       <br />

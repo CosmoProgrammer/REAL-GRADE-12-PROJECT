@@ -10,6 +10,7 @@ const AddRow = ({ client }) => {
     client
       .get(`getrow/${id}`)
       .then((response) => {
+        console.log(response.data);
         setRowData(response.data);
       })
       .catch((error) => {
