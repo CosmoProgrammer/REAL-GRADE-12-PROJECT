@@ -18,8 +18,15 @@ def login(username, password):
     return jsonify(main.login(username, password))
 
 
-@app.route('/getdata', methods=['GET'])
-def getData():
+@app.route('/getdatafalse', methods=['GET'])
+def getDataFalse():
+    print('hi')
+    l = main.returnAll()
+    print(l)
+    return jsonify(l)
+
+@app.route('/getdatatrue', methods=['GET'])
+def getDataTrue():
     print('hi')
     l = main.returnAll()
     print(l)

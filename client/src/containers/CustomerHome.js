@@ -12,7 +12,7 @@ const HomePage = ({ client }) => {
   useEffect(() => {
     console.log("USE EFFECT");
     client
-      .get(`getdatatrue`)
+      .get(`getdatafalse`)
       .then((response) => {
         let s = eval(response.data.schema);
         setTableData(response.data.data);

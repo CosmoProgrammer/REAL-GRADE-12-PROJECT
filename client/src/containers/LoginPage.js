@@ -10,10 +10,13 @@ const LoginPage = ({ client }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    client.get("/login").then((response) => {
-      if (response.success) {
-        localStorage.setItem("username", JSON.stringify(response.username));
+    client.get(`/login/${username}/${password}`).then((response) => {
+      if (response.data) {
+        localStorage.setItem("username", JSON.stringify(username));
+        localStorage.setItem("authenticated", "true");
         navigate("/home");
+      } else {
+        alert("Credentials failed");
       }
     });
   };
