@@ -29,7 +29,7 @@ def createTable(data):
         for element in dict:
             if element != 'subColumns' and dict['subColumns'] == []:
                 query += str(dict[element]).replace('string',
-                                                    'varchar(255)').replace('number', 'integer') + ' '
+                                                    'varchar(255)').replace('number', 'float') + ' '
 
             elif element == 'subColumns' and dict['subColumns'] != []:
                 subColumnSaltKeys[dict['name']] = generateSaltKey()
@@ -41,7 +41,7 @@ def createTable(data):
                     #print(subcolumn)
                     for subcolumnHeader in subcolumn:
                         query += str(subcolumn[subcolumnHeader]).replace(
-                            'string', 'varchar(255)').replace('number', 'integer') + ' '
+                            'string', 'varchar(255)').replace('number', 'float') + ' '
                     query += ','
             #print(query)
         query += ','
@@ -75,6 +75,9 @@ def getRow(id):
     subColumnSaltKeys = eval(f.read())
     f.close()
     print(data,headers)
+    if data == []:
+        for i in range(len(headers)):
+            data += [0]
     for i in range(len(headers)):
         isSubCol = False
         
