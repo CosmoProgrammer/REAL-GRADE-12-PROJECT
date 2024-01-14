@@ -1,11 +1,11 @@
 import mysql.connector
 from random import randint
 
-subColumnSaltKeys = {'lmn':'xyz123'}
+subColumnSaltKeys = {'taste':'abcd'}
 schema = {}
 
-#cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
-#cur = cnx.cursor()
+cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
+cur = cnx.cursor()
 
 
 def generateSaltKey():
@@ -13,7 +13,7 @@ def generateSaltKey():
     y = -10
     while y < x:
         y = randint(17, 26)
-    return 'xyz123'#'qwertyuiopasdfghjklzxcvbnm'[x:y]
+    return 'abcd'#'qwertyuiopasdfghjklzxcvbnm'[x:y]
 
 
 def createTable(data):
@@ -60,11 +60,11 @@ def getRow(id):
     retDict = {}
     q = f"select * from inventory where ID={id};"
     #print(q)
-    #cur.execute(q)
-    #data = cur.fetchone()
-    #headers = [i[0] for i in cur.description]
-    headers = ['a', 'b', 'cxyz123', 'dxyz123']
-    data = ('1', '2', '3', '4')
+    cur.execute(q)
+    data = cur.fetchone()
+    headers = [i[0] for i in cur.description]
+    #headers = ['a', 'b', 'cxyz123', 'dxyz123']
+    #data = ('1', '2', '3', '4')
     #print(data,headers)
     for i in range(len(headers)):
         isSubCol = False
@@ -74,7 +74,8 @@ def getRow(id):
 
             if subColumnSaltKeys[j] in headers[i]:
                 isSubCol = True
-                t = (j, subColumnSaltKeys[j])               
+                t = (j, subColumnSaltKeys[j])      
+            print(t)         
         if not isSubCol:
             retDict[str(headers[i])] =  data[i] if data != None else ''
         else:
@@ -83,6 +84,7 @@ def getRow(id):
                 retDict[header] += [headers[i].strip(key)]
             except KeyError:
                 retDict[header] = [headers[i].strip(key)]
+    print(retDict)
     return retDict
 
 def returnAll(isBUTT):
@@ -114,15 +116,18 @@ def returnAll(isBUTT):
         if subColumnList != []:
             rowList += [subColumnList]
         returnList += [rowList]
-    #print(returnList)
+    print(returnList)
     c = cnx.cursor()
     c.execute('select value from info;')
     s = c.fetchall()
     #print("vvvvvvvvvv")
     #print(s)
-    if isBUTT: return({'data':returnList, 'schema': s[0][0]}, { 'name': "Edit", 'type': "button", 'subColumns': [] },
-    { 'name': "Delete", 'type': "button", 'subColumns': [] })
-    else: return ({'data':returnList, 'schema': s[0][0]},)
+    #print("vvvvvvvvvv")
+    sone = eval(s[0][0])
+    print(sone)
+    if isBUTT: sone+=[{ 'name': "Edit", 'type': "button", 'subColumns': [] },
+    { 'name': "Delete", 'type': "button", 'subColumns': [] }]
+    return {'data':returnList, 'schema': sone}
 
 def checkSubColums(index, subcolumnHeaderIndexes):
     print(subcolumnHeaderIndexes)
@@ -242,5 +247,5 @@ row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": [[
 
 
 #addRow([[1, 'Public', 10, 'cooking', 'mmm', 'blu-blu', 'ahhaaaa'],[2, 'Public', 3, 'cooking2', 'vack', 'brawn', 'cheee']])
-getRow(5)
+#getRow(5)
 

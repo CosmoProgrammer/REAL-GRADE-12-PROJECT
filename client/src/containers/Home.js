@@ -15,9 +15,9 @@ const HomePage = ({ client }) => {
       .get(`getdatatrue`)
       .then((response) => {
         let s = eval(response.data.schema);
+        console.log(response.data.data, s);
         setTableData(response.data.data);
         setSchema(s);
-        console.log(tableData, s);
         setLoading(false);
       })
       .catch((error) => {

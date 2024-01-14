@@ -21,6 +21,10 @@ const ConfigPage = (props) => {
       name: "Qty",
       type: "number",
     },
+    {
+      name: "Price",
+      type: "number",
+    },
   ]);
 
   const addUser = () => {

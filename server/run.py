@@ -21,14 +21,14 @@ def login(username, password):
 @app.route('/getdatafalse', methods=['GET'])
 def getDataFalse():
     print('hi')
-    l = main.returnAll()
+    l = main.returnAll(False)
     print(l)
     return jsonify(l)
 
 @app.route('/getdatatrue', methods=['GET'])
 def getDataTrue():
     print('hi')
-    l = main.returnAll()
+    l = main.returnAll(True)
     print(l)
     return jsonify(l)
 
@@ -56,7 +56,7 @@ def get_row(id):
         ["Colour"],
         ["Smell"],
     ], ["Sweet", "Green", "Pungent"]]}
-    return jsonify(main.getRow(id))
+    return jsonify(row_data)
 
 
 @app.route('/postrow/<id>', methods=['POST'])
