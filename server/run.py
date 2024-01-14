@@ -56,7 +56,7 @@ def get_row(id):
         ["Colour"],
         ["Smell"],
     ], ["Sweet", "Green", "Pungent"]]}
-    return jsonify(row_data)
+    return jsonify(main.getRow(id))
 
 
 @app.route('/postrow/<id>', methods=['POST'])

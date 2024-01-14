@@ -4,8 +4,8 @@ from random import randint
 subColumnSaltKeys = {'senses':'abcd', 'lmn':'xyz123'}
 schema = {}
 
-#cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
-#cur = cnx.cursor()
+cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
+cur = cnx.cursor()
 
 
 def generateSaltKey():
@@ -17,13 +17,14 @@ def generateSaltKey():
 
 
 def createTable(data):
-    cur.execute('drop table if not exists info(value LONGTEXT);')
+    cur.execute('drop table if exists info;')
     cur.execute('create table if not exists info(value LONGTEXT);')
     cnx.commit()
     cur.execute(f"insert into info values (\"{data}\")")
     cur.execute('drop table if exists inventory;')
     cnx.commit()
     query = "create table inventory ("
+    subColumnSaltKeys = {}
     for dict in data:
         for element in dict:
             if element != 'subColumns' and dict['subColumns'] == []:
@@ -32,7 +33,8 @@ def createTable(data):
 
             elif element == 'subColumns' and dict['subColumns'] != []:
                 subColumnSaltKeys[dict['name']] = generateSaltKey()
-                #print(subColumnSaltKeys)
+                print("*****")
+                print(subColumnSaltKeys)
                 for subcolumn in dict[element]:
                     subcolumn['name'] = subcolumn['name'] + \
                         subColumnSaltKeys[dict['name']]
@@ -49,9 +51,10 @@ def createTable(data):
             k += 1
         else:
             break
-        
-    file = open('subColSaltKeys.txt', 'w')
-    file.write(str(subColumnSaltKeys))
+    
+    print(subColumnSaltKeys)
+    with open('subColSaltKeys.txt', 'w') as f:
+        f.write(str(subColumnSaltKeys))
     
     query = query[0:-k]
     query += ')'
@@ -63,15 +66,15 @@ def getRow(id):
     retDict = {}
     q = f"select * from inventory where ID={id};"
     #print(q)
-    #cur.execute(q)
-    #data = cur.fetchone()
-    #headers = [i[0] for i in cur.description]
-    headers = ['a', 'b', 'cxyz123', 'dxyz123']
-    data = ('1', '2', '3', '4')
+    cur.execute(q)
+    data = cur.fetchone()
+    headers = [i[0] for i in cur.description]
+    #headers = ['a', 'b', 'cxyz123', 'dxyz123']
+    #data = ('1', '2', '3', '4')
     f = open('subColSaltKeys.txt', 'r')
-    subColumnSaltKeys = dict(f.read())
+    subColumnSaltKeys = eval(f.read())
     f.close()
-    #print(data,headers)
+    print(data,headers)
     for i in range(len(headers)):
         isSubCol = False
         
@@ -132,7 +135,7 @@ def returnAll(isBUTT):
     #print(s)
     #print("vvvvvvvvvv")
     sone = eval(s[0][0])
-    print(sone)
+    print(returnList)
     if isBUTT: sone+=[{ 'name': "Edit", 'type': "button", 'subColumns': [] },
     { 'name': "Delete", 'type': "button", 'subColumns': [] }]
     return {'data':returnList, 'schema': sone}
@@ -255,5 +258,5 @@ row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": [[
 
 
 #addRow([[1, 'Public', 10, 'cooking', 'mmm', 'blu-blu', 'ahhaaaa'],[2, 'Public', 3, 'cooking2', 'vack', 'brawn', 'cheee']])
-getRow(5)
+#getRow(5)
 
