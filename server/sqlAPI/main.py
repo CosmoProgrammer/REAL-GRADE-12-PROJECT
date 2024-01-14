@@ -1,11 +1,11 @@
 import mysql.connector
 from random import randint
 
-subColumnSaltKeys = {'taste':'abcd'}
+subColumnSaltKeys = {'senses':'abcd', 'lmn':'xyz123'}
 schema = {}
 
-cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
-cur = cnx.cursor()
+#cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
+#cur = cnx.cursor()
 
 
 def generateSaltKey():
@@ -49,7 +49,10 @@ def createTable(data):
             k += 1
         else:
             break
-
+        
+    file = open('subColSaltKeys.txt', 'w')
+    file.write(str(subColumnSaltKeys))
+    
     query = query[0:-k]
     query += ')'
     cur.execute(query)
@@ -60,11 +63,14 @@ def getRow(id):
     retDict = {}
     q = f"select * from inventory where ID={id};"
     #print(q)
-    cur.execute(q)
-    data = cur.fetchone()
-    headers = [i[0] for i in cur.description]
-    #headers = ['a', 'b', 'cxyz123', 'dxyz123']
-    #data = ('1', '2', '3', '4')
+    #cur.execute(q)
+    #data = cur.fetchone()
+    #headers = [i[0] for i in cur.description]
+    headers = ['a', 'b', 'cxyz123', 'dxyz123']
+    data = ('1', '2', '3', '4')
+    f = open('subColSaltKeys.txt', 'r')
+    subColumnSaltKeys = dict(f.read())
+    f.close()
     #print(data,headers)
     for i in range(len(headers)):
         isSubCol = False
@@ -81,9 +87,11 @@ def getRow(id):
         else:
             header, key = t
             try:
-                retDict[header] += [headers[i].strip(key)]
+                retDict[header][0] += [headers[i].strip(key)]
+                retDict[header][1] += [data[i]]
+                
             except KeyError:
-                retDict[header] = [headers[i].strip(key)]
+                retDict[header] = [[headers[i].strip(key)], [data[i]]]
     print(retDict)
     return retDict
 
@@ -247,5 +255,5 @@ row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": [[
 
 
 #addRow([[1, 'Public', 10, 'cooking', 'mmm', 'blu-blu', 'ahhaaaa'],[2, 'Public', 3, 'cooking2', 'vack', 'brawn', 'cheee']])
-#getRow(5)
+getRow(5)
 
