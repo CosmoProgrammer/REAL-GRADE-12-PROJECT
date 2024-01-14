@@ -1,11 +1,11 @@
 import mysql.connector
 from random import randint
 
-subColumnSaltKeys = {}
+subColumnSaltKeys = {'lmn':'xyz123'}
 schema = {}
 
-cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
-cur = cnx.cursor()
+#cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
+#cur = cnx.cursor()
 
 
 def generateSaltKey():
@@ -13,7 +13,7 @@ def generateSaltKey():
     y = -10
     while y < x:
         y = randint(17, 26)
-    return 'abcd'#'qwertyuiopasdfghjklzxcvbnm'[x:y]
+    return 'xyz123'#'qwertyuiopasdfghjklzxcvbnm'[x:y]
 
 
 def createTable(data):
@@ -59,34 +59,36 @@ def createTable(data):
 def getRow(id):
     retDict = {}
     q = f"select * from inventory where ID={id};"
-    print(q)
-    cur.execute(q)
-    data = cur.fetchone()
-    headers = [i[0] for i in cur.description]
-    print(data,headers)
+    #print(q)
+    #cur.execute(q)
+    #data = cur.fetchone()
+    #headers = [i[0] for i in cur.description]
+    headers = ['a', 'b', 'cxyz123', 'dxyz123']
+    data = ('1', '2', '3', '4')
+    #print(data,headers)
     for i in range(len(headers)):
-        if str(headers[i]) not in subColumnSaltKeys:
+        isSubCol = False
+        
+        t = ()
+        for j in subColumnSaltKeys:
+
+            if subColumnSaltKeys[j] in headers[i]:
+                isSubCol = True
+                t = (j, subColumnSaltKeys[j])               
+        if not isSubCol:
             retDict[str(headers[i])] =  data[i] if data != None else ''
         else:
-            subColInds = []
-            for j in range(len(headers)):
-                if subColumnSaltKeys[str(headers[i])] in str(headers[j]):
-                    subColInds += j
-            retList = []
-            for j in subColInds:
-                retList += [data[j]]
-            retList2 = []
-            for j in subColInds:
-                retList2 += [headers[j]]
-            retDict[str(headers(i))]= [retList, retList2]
+            header, key = t
+            try:
+                retDict[header] += [headers[i].strip(key)]
+            except KeyError:
+                retDict[header] = [headers[i].strip(key)]
     return retDict
 
-def returnAll():
+def returnAll(isBUTT):
     cur.execute('select * from inventory')
     data = cur.fetchall()    
     headers = [i[0] for i in cur.description]
-    #headers = ['ID', 'Public/NonPublic', 'Qty', 'Industry', 'Tasteabcd', 'Colourabcd', 'Smellabcd']
-    #data = ((1, 'Public', 10, 'cooking', 'mmm', 'blu-blu', 'ahhaaaa'),(2, 'Public', 3, 'cooking2', 'vack', 'brawn', 'cheee'))
     saltKeys = subColumnSaltKeys.values()
     print(saltKeys)
     subcolumnHeaderIndexes = []
@@ -118,7 +120,9 @@ def returnAll():
     s = c.fetchall()
     #print("vvvvvvvvvv")
     #print(s)
-    return({'data':returnList, 'schema': s[0][0]})
+    if isBUTT: return({'data':returnList, 'schema': s[0][0]}, { 'name': "Edit", 'type': "button", 'subColumns': [] },
+    { 'name': "Delete", 'type': "button", 'subColumns': [] })
+    else: return ({'data':returnList, 'schema': s[0][0]},)
 
 def checkSubColums(index, subcolumnHeaderIndexes):
     print(subcolumnHeaderIndexes)
@@ -237,4 +241,6 @@ row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": [[
 ], ["Sweet", "Green", "Pungent"]]}
 
 
-addRow([[1, 'Public', 10, 'cooking', 'mmm', 'blu-blu', 'ahhaaaa'],[2, 'Public', 3, 'cooking2', 'vack', 'brawn', 'cheee']])
+#addRow([[1, 'Public', 10, 'cooking', 'mmm', 'blu-blu', 'ahhaaaa'],[2, 'Public', 3, 'cooking2', 'vack', 'brawn', 'cheee']])
+getRow(5)
+
