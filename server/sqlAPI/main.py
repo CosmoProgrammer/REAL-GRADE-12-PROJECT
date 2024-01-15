@@ -5,8 +5,8 @@ subColumnSaltKeys = {'senses':'abcd', 'lmn':'xyz123'}
 schema = {}
 
 
-#cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
-#cur = cnx.cursor()
+cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
+cur = cnx.cursor()
 
 
 def generateSaltKey():
@@ -76,7 +76,8 @@ def getRow(id):
     subColumnSaltKeys = eval(f.read())
     f.close()
     print(data,headers)
-    if data == []:
+    if data == [] or data==None:
+        data=[]
         for i in range(len(headers)):
             data += [0]
     for i in range(len(headers)):
@@ -154,7 +155,7 @@ def checkSubColums(index, subcolumnHeaderIndexes):
 def deleteRow(id): q = f'delete from inventory where id = {id};'
 
 def addRow(rows):
-    headerType = [1, 253, 1, 253, 253, 253, 253]#[i[1] for i in cur.description]
+    headerType = [i[1] for i in cur.description]#[1, 253, 1, 253, 253, 253, 253]#
     i = list(rows.values())
     c, k = 0, 0
     for element in i:
@@ -201,11 +202,15 @@ def addRow(rows):
                         q += f'{i[j][1][k]});'
                     c += 1
     print(q)
+    cur.execute(q)
+    cnx.commit()
 def updateRow(row_data):
     query = 'update inventory set '
     cond = 0
+    cur.execute("SELECT * FROM inventory LIMIT 1;")
     headerType = [i[1] for i in cur.description]
     headers = [i[0] for i in cur.description]
+    temp = cur.fetchall()
     c = 0
     for element in row_data:
         stg = ''
@@ -288,6 +293,6 @@ row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": 10, "Industry": "Cooki
 ], ["Sweet", "Green", "Pungent"]]}
 
 
-addRow(row_data)
+#addRow(row_data)
 #getRow(5)
 

@@ -20,7 +20,7 @@ const EditRow = ({ client }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     client
-      .post(`postrow/${id}`, rowData)
+      .post(`editrow/${id}`, rowData)
       .then((response) => {
         console.log("Row updated: ", response.data);
         navigate("/home");

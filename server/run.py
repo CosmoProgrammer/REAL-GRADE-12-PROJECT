@@ -59,11 +59,20 @@ def get_row(id):
     return jsonify(main.getRow(id))
 
 
-@app.route('/postrow/<id>', methods=['POST'])
+@app.route('/addrow/<id>', methods=['POST'])
 def post_row(id):
     # Update the row with the given id
     # Hurry up just a little, thank you
     updated_row_data = request.get_json()
+    main.addRow(updated_row_data)
+    return jsonify(updated_row_data), 200
+
+@app.route('/editrow/<id>', methods=['POST'])
+def edit_row(id):
+    # Update the row with the given id
+    # Hurry up just a little, thank you
+    updated_row_data = request.get_json()
+    main.updateRow(updated_row_data)
     return jsonify(updated_row_data), 200
 
 # Another login function, Ill send you credentials and you will have to validate
