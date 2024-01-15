@@ -5,8 +5,8 @@ subColumnSaltKeys = {'senses':'abcd', 'lmn':'xyz123'}
 schema = {}
 
 
-cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
-cur = cnx.cursor()
+#cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
+#cur = cnx.cursor()
 
 
 def generateSaltKey():
@@ -207,16 +207,18 @@ def addRow(rows):
 def updateRow(row_data):
     query = 'update inventory set '
     cond = 0
-    cur.execute("SELECT * FROM inventory LIMIT 1;")
-    headerType = [i[1] for i in cur.description]
-    headers = [i[0] for i in cur.description]
-    temp = cur.fetchall()
+    #cur.execute("SELECT * FROM inventory LIMIT 1;")
+    headerType = [1, 253, 1, 253, 253, 253, 253]#[i[1] for i in cur.description]
+    headers = ['id', 'public/np', 'qty', 'industry','tasteabcd','colorabcd', 'smellabcd']#[i[0] for i in cur.description]
+    #temp = cur.fetchall()
     c = 0
     for element in row_data:
         stg = ''
         if type(row_data[element]) != list:
-            if element.lower == 'id':
+            print(element.lower())
+            if element.lower() == 'id':
                 cond = row_data[element]
+                print('cond')
             elif element.lower != 'id':
                 if headerType[c] == 253:
                     stg = str(element) + '=' + '"' + \
@@ -240,7 +242,9 @@ def updateRow(row_data):
                 c += 1
         query += stg
         c += 1
-        print(query)
+    query = query[0:-1]
+    query += f' where id={cond};'
+    print(query)
 
 
 def createLoginTable(data):
@@ -286,7 +290,7 @@ data = [
     }
 ]
 
-row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": 10, "Industry": "Cooking", "Types": [[
+row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": 10, "Industry": "Cooking", "senses": [[
     ["Taste"],
     ["Colour"],
     ["Smell"],
@@ -295,4 +299,5 @@ row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": 10, "Industry": "Cooki
 
 #addRow(row_data)
 #getRow(5)
+updateRow(row_data)
 
