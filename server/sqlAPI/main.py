@@ -4,8 +4,9 @@ from random import randint
 subColumnSaltKeys = {'senses':'abcd', 'lmn':'xyz123'}
 schema = {}
 
-cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
-cur = cnx.cursor()
+
+#cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
+#cur = cnx.cursor()
 
 
 def generateSaltKey():
@@ -153,23 +154,53 @@ def checkSubColums(index, subcolumnHeaderIndexes):
 def deleteRow(id): q = f'delete from inventory where id = {id};'
 
 def addRow(rows):
-    for i in rows:
-        q = 'insert into inventory values('
-        for j in range(len(i)):
-            if type(i[j]) != list and len(i) - 1 != j:
+    headerType = [1, 253, 1, 253, 253, 253, 253]#[i[1] for i in cur.description]
+    i = list(rows.values())
+    c, k = 0, 0
+    for element in i:
+        if type != list:
+            k += 1
+        else:
+            for x in element[1]:
+                k += 1    
+    q = 'insert into inventory values('
+    for j in range(len(i)):
+        if type(i[j]) != list and len(i) - 1 != j:
+            if headerType[c] == 253:
+                q += f'"{i[j]}",'
+            else:
                 q += f'{i[j]},'
-            elif type(i[j]) == list and len(i) - 1 != j:
-                for k in i[j]:
+            c += 1
+            
+        elif type(i[j]) == list and len(i) - 1 != j:
+            for k in i[j][1]:
+                if headerType[c] == 253:
+                    q += f'"{k}",'
+                else:
                     q += f'{k},'
-            elif type(i[j]) != list and len(i) - 1 == j:
+                c += 1
+        elif type(i[j]) != list and len(i) - 1 == j:
+            if headerType[c] == 253:
+                q += f'"{i[j]}");'
+            else:
                 q += f'{i[j]});'
-            elif type(i[j]) == list and len(i) - 1 == j:
-                for k in len(i[j]):
-                    if k != len(i[j]) - 1:
-                        q += f'{i[j][k]},'
+            c += 1
+        elif type(i[j]) == list and len(i) - 1 == j:
+            
+            for k in range(len(i[j][1])):            
+                if k != len(i[j][1]) - 1:                    
+                    if headerType[c] == 253:
+                        q += f'"{i[j][1][k]}",'
                     else:
-                        q += f'{i[j][k]});'
-        print(q)
+                        q += f'{i[j][1][k]},'
+                    c += 1
+                else:
+                    if headerType[c] == 253:
+                        q += f'"{i[j][1][k]}");'
+                    else:
+                        q += f'{i[j][1][k]});'
+                    c += 1
+    print(q)
 def updateRow(row_data):
     query = 'update inventory set '
     cond = 0
@@ -250,16 +281,13 @@ data = [
     }
 ]
 
-row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": [[
-    ["Public"],
-    ["Private"],
-], [5, 10]], "Industry": "Cooking", "Types": [[
+row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": 10, "Industry": "Cooking", "Types": [[
     ["Taste"],
     ["Colour"],
     ["Smell"],
 ], ["Sweet", "Green", "Pungent"]]}
 
 
-#addRow([[1, 'Public', 10, 'cooking', 'mmm', 'blu-blu', 'ahhaaaa'],[2, 'Public', 3, 'cooking2', 'vack', 'brawn', 'cheee']])
+addRow(row_data)
 #getRow(5)
 
