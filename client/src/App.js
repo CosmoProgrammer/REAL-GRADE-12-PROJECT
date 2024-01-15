@@ -17,7 +17,7 @@ const client = axios.create({
 
 function App() {
   return (
-    <>
+    <div style={{ backgroundColor: "lightblue" }}>
       <Ribbon />
       <Routes>
         <Route path="/" exact element={<CustomerHome client={client} />} />
@@ -36,7 +36,7 @@ function App() {
         <Route path="/addrow/:id" exact element={<AddRow client={client} />} />
         <Route path="*" element={<NoPageFound />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
