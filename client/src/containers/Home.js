@@ -76,8 +76,8 @@ const HomePage = ({ client }) => {
     client
       .post(`deleterow/${id}`)
       .then((response) => {
-        console.log("Row delete: ", response.data);
-        navigate("/home");
+        console.log("Row deleted: ", id);
+        window.location.reload(false);
       })
       .catch((error) => {
         console.error("Error updating row: ", error);

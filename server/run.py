@@ -67,6 +67,14 @@ def post_row(id):
     main.addRow(updated_row_data)
     return jsonify(updated_row_data), 200
 
+@app.route('/deleterow/<id>', methods=['POST'])
+def delete_row(id):
+    # Update the row with the given id
+    # Hurry up just a little, thank you
+    print("GU")
+    main.deleteRow(id)
+    return jsonify('hi'), 200
+
 @app.route('/editrow/<id>', methods=['POST'])
 def edit_row(id):
     # Update the row with the given id

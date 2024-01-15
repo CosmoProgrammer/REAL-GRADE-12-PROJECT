@@ -82,7 +82,7 @@ const EditRow = ({ client }) => {
                   </td>
                 </tr>
               ));
-            } else {
+            } else if (key !== "ID") {
               return (
                 <tr key={key}>
                   <td>{key}</td>
@@ -104,6 +104,8 @@ const EditRow = ({ client }) => {
           })}
         </tbody>
       </table>
+      <br />
+      <br />
       <button type="submit">Submit</button>
     </form>
   );
