@@ -1,1 +1,137 @@
-<mxfile host="app.diagrams.net" modified="2024-01-18T07:39:25.366Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="hdQlLEIKoX_lWun7dSZl" version="17.4.6" type="github"><diagram id="59dUMj7wLn-0rVzH7fCd" name="Page-1">5Vtdc6M2FP01nmkfkgEJgf2Ytb0f06TNrLft5mlHMbKhBeQRIrb311cYyRiLJNqJjRb3yeiKD3F0zz26V3gAx+nmA8Or6I6GJBkAJ9wM4GQAAHB8T/yUlm1l8YdOZViyOKxMbm2Yxd+JNKrTijgkeeNETmnC41XTOKdZRua8YcOM0XXztAVNmk9d4SXRDLM5TnTr33HIo8o6BEFt/0jiZaSe7PqjqifF6mT5JnmEQ7o+MMHpAI4Zpbw6SjdjkpTgKVyq694/07sfGCMZN7ngN5LdZfN88yG8eZi++5ZOx18er+RrPOGkkC8sB8u3CgESCkBkkzIe0SXNcDKtre8YLbKQlI9xRKs+55bSlTC6wvgP4XwrZxcXnApTxNNE9lbPLB/07LtJU04LNicvvJDyEcyWhL9wHtjPgHBdQlPC2VZcx0iCefzUHAeWPrTcn1fDLA4k0j+AuquhPhMDFsO9EdZP2ZN4a7obzh3OhIOlJQrAuRdDW1CWajNU41+CuY5iTmYrvINpLVjZhvUTYZxsXkZbR0de4EF5ieS0p8i6rhniKrePDtiBnDMBOro0NwaGbjy06sa6H/9PYHcdm7gDDfZxROb/lpctKilcxMuClZi+14NFRNPHIu8oUAwbgQLBlkDh+HqgcN1zRQqgg9dznx2aKt4zc9WNzw412D8TASETto/iEaW8lSsx4PzCCA7FL82S7a8vSJ3TiQf7w6DpwQiZSZ1/Lgd24aU5sOL661HX7qLN0YCfxPkqweUQxruYu/fio/nofkm2T7Ps+Sm6OD81Xh14Vv1UV7g/812g/ZStCplkjEWU5eQo25jNI5JibZZE4roqDwVmOElIQpcMpwLaFWGxGLK49VHffd3xWohexBuisv5TUQGMGlQIWqngdUmFy8uyPVMq+Fap4P0IFWTXBHPBAecLfkz0SN43LigEJBeGQQsXUKdcGNpwfQEX234tr79Gqvlw2DfZyJtXra1snZIyviFl7Kb0vsaYe0bnJM8HYFzZ47CiC87KZXqOn8pGLqVDWouKSuGOStYXQyPf9mII6IGo5wqwL8a/mnZCm/6sbvyiAtzSZZxVShAKIGKc5FYDf3OeT0CI4yzWc21nscCODGxifqACovWgwr44rjWgbCgJ2EuHeygcBzpyfukAsA/SAfX8uO8xzhT3KuOwFuP0itBNwaMyks3F42kZ2mbFvBTxRZG8qSZ89sgE2irEbZHJVSHs9H6s58999+ORoR9DqyViVVr9GTTBNdOEo3TC6VATTOcUWS1GqWGa1/2rBGLNRBzSy/9dh6fjDSyAgmvbSyeop2g9j0/QNJeAyKYvexeXxBkD71lN4tDFfWdgDDyy+qEB1IHXs+c7GsaL7aCxlXBJyTMAR0tUBK+DFhFQYDVEYC8Xp58bfUe976RApjIQWCWFvrGpk2Ka8Z0pI+uyg5NU/EwIx/Gl1ZaAg64BajDEc1qSuMBTVDgkSHA2eoxssOFtyUSzwBR0WGGCgSH17FY6oL6R2tid+Ot4d2JW7U78fsBCyxkFgOC6yRbkA+s5hXdxYuKZ1u48q2Li6bW7FjEJY37hKnIFodEiq11FzrjM8qzqiHugIrWm/LRFKa8fMuK9SUae41/XSnKF9gxRH/3Z3uZGVlTjjWQBttiCTL97tcsWpO/r6RL1maR0x5HWRVavpek4/3cdf5/wWMz/UdA/rjUTHNBhgoNMP1i0uoWOTL5XvKXld+Z/iKZNmp2AWB4YHqVC0GtRMJXJv1HBRLP+r+2u7+Afy3D6Hw==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2024-01-18T07:43:38.059Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="equbKH_Jlv5jmCp1pmRo" version="17.4.6" type="github">
+  <diagram id="59dUMj7wLn-0rVzH7fCd" name="Page-1">
+    <mxGraphModel dx="1422" dy="782" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qvjgurbUd64GCUBzvAZw-1" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="50" y="120" width="757" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-1" value="Start: Inventory Management Platform" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="368.85238095238094" y="328.995" width="108.14285714285714" height="46.875" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-2" value="Check if configured?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="375.1607142857143" y="441.495" width="95.52619047619048" height="103.125" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-1" target="KenMncsxGdAYEB_mECTb-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-8" value="Render Home Page (read only)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="599.5571428571429" y="464.9325" width="108.14285714285714" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-2" target="KenMncsxGdAYEB_mECTb-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-10" value="Display Config Page" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="368.85238095238094" y="582.12" width="108.14285714285714" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-2" target="KenMncsxGdAYEB_mECTb-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-12" value="User Input: Create Inventory Schema" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="367.05" y="675.87" width="111.74761904761905" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-10" target="KenMncsxGdAYEB_mECTb-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-14" value="User Input: Create User Data Table" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="353.53214285714284" y="760.245" width="138.78333333333333" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-12" target="KenMncsxGdAYEB_mECTb-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-16" target="KenMncsxGdAYEB_mECTb-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-16" value="Process, validate and save schema and user data" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="368.85238095238094" y="844.62" width="108.14285714285714" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-14" target="KenMncsxGdAYEB_mECTb-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-21" value="User Input: Login Credentials" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="599.5571428571429" y="333.6825" width="108.14285714285714" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-8" target="KenMncsxGdAYEB_mECTb-21" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-23" target="KenMncsxGdAYEB_mECTb-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-23" value="Authentication Successful?" style="rhombus;whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="599.5571428571429" y="160.245" width="108.14285714285714" height="107.8125" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-21" target="KenMncsxGdAYEB_mECTb-23" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-29" value="Render Home Page (read and write)" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="375.1607142857143" y="186.02625" width="108.14285714285714" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-23" target="KenMncsxGdAYEB_mECTb-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-31" value="User Input: Modify Inventory" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="185.0095238095238" y="182.510625" width="118.05595238095238" height="63.28125" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-29" target="KenMncsxGdAYEB_mECTb-31" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-35" value="User Input: Enter new Item Details" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="165.40863095238095" y="319.62" width="157.2577380952381" height="70.3125" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-31" target="KenMncsxGdAYEB_mECTb-35" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-37" target="KenMncsxGdAYEB_mECTb-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-37" value="Process, Validate and Save New Item" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="189.9660714285714" y="471.96375" width="108.14285714285714" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-38" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-35" target="KenMncsxGdAYEB_mECTb-37" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-43" value="User Input: Edit Item Details" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry y="181.640625" width="157.2577380952381" height="63.28125" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-44" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-43" target="KenMncsxGdAYEB_mECTb-31" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="214" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" target="KenMncsxGdAYEB_mECTb-29" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="83.40029761904789" y="28.995" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-47" value="Process, Validate and Save New Details" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="24.557440476190475" width="108.14285714285714" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-48" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="29.328869047619445" y="182.510625" as="sourcePoint" />
+            <mxPoint x="29.328869047619445" y="57.12" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-50" target="KenMncsxGdAYEB_mECTb-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-50" value="User Input: Remove Item" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="185.0095238095238" y="44.229375" width="118.05595238095238" height="63.28125" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-31" target="KenMncsxGdAYEB_mECTb-50" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-54" target="KenMncsxGdAYEB_mECTb-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-54" value="User Input: Log Out" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" vertex="1">
+          <mxGeometry x="366.59940476190474" y="263.37" width="125.26547619047619" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="KenMncsxGdAYEB_mECTb-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#00CC66;" parent="qvjgurbUd64GCUBzvAZw-1" source="KenMncsxGdAYEB_mECTb-29" target="KenMncsxGdAYEB_mECTb-54" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
