@@ -25,6 +25,7 @@ def getDataFalse():
     print(l)
     return jsonify(l)
 
+
 @app.route('/getdatatrue', methods=['GET'])
 def getDataTrue():
     print('hi')
@@ -56,7 +57,7 @@ def get_row(id):
         ["Colour"],
         ["Smell"],
     ], ["Sweet", "Green", "Pungent"]]}
-    return jsonify(main.getRow(id))
+    return jsonify(list(main.getRow(id).items()))
 
 
 @app.route('/addrow/<id>', methods=['POST'])
@@ -67,6 +68,7 @@ def post_row(id):
     main.addRow(updated_row_data)
     return jsonify(updated_row_data), 200
 
+
 @app.route('/deleterow/<id>', methods=['POST'])
 def delete_row(id):
     # Update the row with the given id
@@ -74,6 +76,7 @@ def delete_row(id):
     print("GU")
     main.deleteRow(id)
     return jsonify('hi'), 200
+
 
 @app.route('/editrow/<id>', methods=['POST'])
 def edit_row(id):
@@ -83,8 +86,38 @@ def edit_row(id):
     main.updateRow(updated_row_data)
     return jsonify(updated_row_data), 200
 
-# Another login function, Ill send you credentials and you will have to validate
 
+# Another login function, Ill send you credentials and you will have to validate
+'''
+{'data': [
+        [1, "Public", [5, 10], "Cooking", ["Sweet", "Green", "Pungent"]],
+        [2, "Public", [6, 20], "Baking", ["Sour", "Blue", "Pleasant"]],
+        [3, "NonPublic", [5, 5], "Cooking", ["Spicy", "Green", "None"]],
+    ], 'schema': [
+        {'name': "ID", 'type': "number", subColumns: []},
+        {'name': "Public/NonPublic", 'type': "string", subColumns: []},
+        {
+            'name': "Qty",
+            'type': "number",
+            'subColumns': [
+                {'name': "Public", type: "number"},
+                {'name': "Private", type: "number"},
+            ],
+        },
+        {'name': "Industry", 'type': "string", 'subColumns': []},
+        {
+            'name': "Types",
+            'type': "string",
+            'subColumns': [
+                {'name': "Taste", 'type': "string"},
+                {'name': "Colour", 'type': "string"},
+                {'name': "Smell", 'type': "string"},
+            ],
+        },
+        {'name': "Edit", 'type': "button", subColumns: []},
+        {'name': "Delete", 'type': "button", subColumns: []},
+    ]}
+'''
 
 if __name__ == '__main__':
     app.run()

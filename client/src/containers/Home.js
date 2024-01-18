@@ -15,6 +15,7 @@ const HomePage = ({ client }) => {
       .get(`getdatatrue`)
       .then((response) => {
         let s = eval(response.data.schema);
+        //console.log("HERE");
         console.log(response.data.data, s);
         setTableData(response.data.data);
         setSchema(s);
@@ -54,7 +55,10 @@ const HomePage = ({ client }) => {
     [1, "Public", [5, 10], "Cooking", ["Sweet", "Green", "Pungent"]],
     [2, "Public", [6, 20], "Baking", ["Sour", "Blue", "Pleasant"]],
     [3, "NonPublic", [5, 5], "Cooking", ["Spicy", "Green", "None"]],
-  ];*/
+  ];
+
+  setTableData(data);
+  setSchema(schema);*/
 
   const [searchQuery, setSearchQuery] = useState("");
 

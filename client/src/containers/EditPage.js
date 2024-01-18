@@ -10,7 +10,8 @@ const EditRow = ({ client }) => {
     client
       .get(`getrow/${id}`)
       .then((response) => {
-        setRowData(response.data);
+        let a = response.data;
+        setRowData(Object.fromEntries(a));
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);

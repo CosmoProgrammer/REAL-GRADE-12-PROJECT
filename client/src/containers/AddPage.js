@@ -10,8 +10,9 @@ const AddRow = ({ client }) => {
     client
       .get(`getrow/${id}`)
       .then((response) => {
-        console.log(response.data);
-        setRowData(response.data);
+        let a = response.data;
+        setRowData(Object.fromEntries(a));
+        console.log(a);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);

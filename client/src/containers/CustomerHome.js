@@ -105,9 +105,6 @@ const HomePage = ({ client }) => {
         onDelete={onDelete}
       />
       <br />
-      <button onClick={() => onAdd()} align="right">
-        Add Entry
-      </button>
     </>
   );
 };

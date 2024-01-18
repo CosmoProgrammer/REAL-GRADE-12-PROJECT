@@ -1,6 +1,7 @@
 import React from "react";
 
 const DynamicTable = ({ schema, data, onEdit, onDelete }) => {
+  console.log(data);
   const buildHeaders = () => {
     return schema.map((column, i) => {
       return (
@@ -25,13 +26,15 @@ const DynamicTable = ({ schema, data, onEdit, onDelete }) => {
           {schema.map((column, j) => {
             if (column.subColumns.length > 0) {
               return (
-                <td key={`${i}-${j}`}>
-                  <tr>
-                    {column.subColumns.map((subColumn, k) => (
-                      <td key={`${i}-${j}-${k}`}>{row[j][k]}</td>
-                    ))}
-                  </tr>
-                </td>
+                <>
+                  <td key={`${i}-${j}`}>
+                    <tr>
+                      {column.subColumns.map((subColumn, k) => (
+                        <td key={`${i}-${j}-${k}`}>{row[j][k]}</td>
+                      ))}
+                    </tr>
+                  </td>
+                </>
               );
             } else if (column.name === "Edit") {
               return (

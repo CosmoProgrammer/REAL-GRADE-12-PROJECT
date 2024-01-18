@@ -1,1 +1,1 @@
-{'Senses': 'abcd'}
+{'flavor': 'omujysg', 'color': 'eovrgzl'}

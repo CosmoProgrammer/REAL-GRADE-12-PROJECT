@@ -1,11 +1,12 @@
 import mysql.connector
-from random import randint
+from random import randint, sample
 
-subColumnSaltKeys = {'senses':'abcd', 'lmn':'xyz123'}
+subColumnSaltKeys = {}
 schema = {}
 
 
-cnx = mysql.connector.connect(user='root', password='Pokemon2345!', host='localhost', port='3306', database='project', auth_plugin='mysql_native_password')
+cnx = mysql.connector.connect(
+    user='root', password='sql123', host='localhost', port='3306', database='project')
 cur = cnx.cursor()
 
 
@@ -13,8 +14,8 @@ def generateSaltKey():
     x = randint(0, 16)
     y = -10
     while y < x:
-        y = randint(17, 26)
-    return 'abcd'#'qwertyuiopasdfghjklzxcvbnm'[x:y]
+        y = randint(17, 36)
+    return ''.join(sample('qwertyuiopasdfghjklzxcvbnm', len('qwertyuiopasdfghjklzxcvbnm')))[x:y]
 
 
 def createTable(data):
@@ -33,32 +34,30 @@ def createTable(data):
                                                     'varchar(255)').replace('number', 'float') + ' '
 
             elif element == 'subColumns' and dict['subColumns'] != []:
-                subColumnSaltKeys[dict['name']] = generateSaltKey()
-                print("*****")
-                print(subColumnSaltKeys)
+                subColumnSaltKeys[dict['name'].lower()] = generateSaltKey()
                 for subcolumn in dict[element]:
                     subcolumn['name'] = subcolumn['name'] + \
                         subColumnSaltKeys[dict['name']]
-                    #print(subcolumn)
                     for subcolumnHeader in subcolumn:
                         query += str(subcolumn[subcolumnHeader]).replace(
                             'string', 'varchar(255)').replace('number', 'float') + ' '
                     query += ','
-            #print(query)
         query += ','
     k = 0
+    query = query.replace(',,', ',')
     for i in range(len(query) - 1, 0, -1):
         if query[i] == ',' or query[i] == ' ':
             k += 1
         else:
             break
-    
+
     print(subColumnSaltKeys)
     with open('subColSaltKeys.txt', 'w') as f:
         f.write(str(subColumnSaltKeys))
-    
+
     query = query[0:-k]
     query += ')'
+    print(query)
     cur.execute(query)
     cnx.commit()
 
@@ -66,69 +65,75 @@ def createTable(data):
 def getRow(id):
     retDict = {}
     q = f"select * from inventory where ID={id};"
-    #print(q)
+    # print(q)
     cur.execute(q)
     data = cur.fetchone()
     headers = [i[0] for i in cur.description]
-    #headers = ['a', 'b', 'cxyz123', 'dxyz123']
-    #data = ('1', '2', '3', '4')
+    # headers = ['a', 'b', 'cxyz123', 'dxyz123']
+    # data = ('1', '2', '3', '4')
     f = open('subColSaltKeys.txt', 'r')
     subColumnSaltKeys = eval(f.read())
     f.close()
-    print(data,headers)
-    if data == [] or data==None:
-        data=[]
+    list = []
+    print(data, headers)
+    if data == [] or data == None:
+        data = []
         for i in range(len(headers)):
             data += [0]
     for i in range(len(headers)):
         isSubCol = False
-        
+
         t = ()
         for j in subColumnSaltKeys:
 
             if subColumnSaltKeys[j] in headers[i]:
                 isSubCol = True
-                t = (j, subColumnSaltKeys[j])      
-            print(t)         
+                t = (j, subColumnSaltKeys[j])
         if not isSubCol:
-            retDict[str(headers[i])] =  data[i] if data != None else ''
+            retDict[str(headers[i])] = data[i] if data != None else ''
         else:
             header, key = t
             try:
                 retDict[header][0] += [headers[i].strip(key)]
                 retDict[header][1] += [data[i]]
-                
+
             except KeyError:
                 retDict[header] = [[headers[i].strip(key)], [data[i]]]
-    print(retDict)
     return retDict
+
 
 def returnAll(isBUTT):
     cur.execute('select * from inventory')
-    data = cur.fetchall()    
+    data = cur.fetchall()
     headers = [i[0] for i in cur.description]
+    with open('subColSaltKeys.txt', 'r') as f:
+        subColumnSaltKeys = eval(f.read())
     saltKeys = subColumnSaltKeys.values()
-    print(saltKeys)
     subcolumnHeaderIndexes = []
     for i in saltKeys:
         t = []
         for j in range(len(headers)):
-            print(i, headers[j])
             if i in headers[j]:
                 t += [j]
+        print('****________________', t)
         subcolumnHeaderIndexes += [t]
+    print(subcolumnHeaderIndexes)
     returnList = []
     for row in data:
         rowList = []
-        subColumnList = []        
+        subColumnList = []
         stopVal = -1
-        for valueIndex in range(len(row)):            
+        for valueIndex in range(len(row)):
             stopVal = max(checkSubColums(valueIndex, subcolumnHeaderIndexes))
-            print(stopVal, row[valueIndex])            
-            if valueIndex <= stopVal:
+            if valueIndex < stopVal:
                 subColumnList += [row[valueIndex]]
+                print(subColumnList)
+            elif valueIndex == stopVal:
+                subColumnList += [row[valueIndex]]
+                rowList += [subColumnList]
+                subColumnList = []
             else:
-               rowList += [row[valueIndex]]
+                rowList += [row[valueIndex]]
         if subColumnList != []:
             rowList += [subColumnList]
         returnList += [rowList]
@@ -136,31 +141,36 @@ def returnAll(isBUTT):
     c = cnx.cursor()
     c.execute('select value from info;')
     s = c.fetchall()
-    #print("vvvvvvvvvv")
-    #print(s)
-    #print("vvvvvvvvvv")
+    # print("vvvvvvvvvv")
+    # print(s)
+    # print("vvvvvvvvvv")
     sone = eval(s[0][0])
     print(returnList)
-    if isBUTT: sone+=[{ 'name': "Edit", 'type': "button", 'subColumns': [] },
-    { 'name': "Delete", 'type': "button", 'subColumns': [] }]
-    return {'data':returnList, 'schema': sone}
+    if isBUTT:
+        sone += [{'name': "Edit", 'type': "button", 'subColumns': []},
+                 {'name': "Delete", 'type': "button", 'subColumns': []}]
+    return {'data': returnList, 'schema': sone}
+
 
 def checkSubColums(index, subcolumnHeaderIndexes):
-    print(subcolumnHeaderIndexes)
+    print('*****************', subcolumnHeaderIndexes)
     for subColRoot in subcolumnHeaderIndexes:
         if index in subColRoot:
             return subColRoot
     return [-1]
 
-def deleteRow(id): 
+
+def deleteRow(id):
     q = f'delete from inventory where id = {id};'
     print(q)
     cur.execute(q)
     cnx.commit()
     return 'hi'
 
+
 def addRow(rows):
-    headerType = [i[1] for i in cur.description]#[1, 253, 1, 253, 253, 253, 253]#
+    # [1, 253, 1, 253, 253, 253, 253]#
+    headerType = [i[1] for i in cur.description]
     i = list(rows.values())
     c, k = 0, 0
     for element in i:
@@ -168,7 +178,7 @@ def addRow(rows):
             k += 1
         else:
             for x in element[1]:
-                k += 1    
+                k += 1
     q = 'insert into inventory values('
     for j in range(len(i)):
         if type(i[j]) != list and len(i) - 1 != j:
@@ -177,7 +187,7 @@ def addRow(rows):
             else:
                 q += f'{i[j]},'
             c += 1
-            
+
         elif type(i[j]) == list and len(i) - 1 != j:
             for k in i[j][1]:
                 if headerType[c] == 253:
@@ -192,9 +202,9 @@ def addRow(rows):
                 q += f'{i[j]});'
             c += 1
         elif type(i[j]) == list and len(i) - 1 == j:
-            
-            for k in range(len(i[j][1])):            
-                if k != len(i[j][1]) - 1:                    
+
+            for k in range(len(i[j][1])):
+                if k != len(i[j][1]) - 1:
                     if headerType[c] == 253:
                         q += f'"{i[j][1][k]}",'
                     else:
@@ -209,12 +219,16 @@ def addRow(rows):
     print(q)
     cur.execute(q)
     cnx.commit()
+
+
 def updateRow(row_data):
     query = 'update inventory set '
     cond = 0
     cur.execute("SELECT * FROM inventory LIMIT 1;")
-    headerType = [i[1] for i in cur.description] #[1, 253, 1, 253, 253, 253, 253]
-    headers = [i[0] for i in cur.description]#['id', 'public/np', 'qty', 'industry','tasteabcd','colorabcd', 'smellabcd']#
+    # [1, 253, 1, 253, 253, 253, 253]
+    headerType = [i[1] for i in cur.description]
+    # ['id', 'public/np', 'qty', 'industry','tasteabcd','colorabcd', 'smellabcd']#
+    headers = [i[0] for i in cur.description]
     temp = cur.fetchall()
     c = 0
     for element in row_data:
@@ -231,7 +245,9 @@ def updateRow(row_data):
                 else:
                     stg = str(element) + '=' + str(row_data[element]) + ','
         else:
-            saltKey = subColumnSaltKeys[element.lower()]
+            with open('subColSaltKeys.txt', 'r') as f:
+                k = eval(f.read())
+            saltKey = k[element.lower()]
             changeInd = []
             for i in range(len(headers)):
                 if saltKey in headers[i]:
@@ -243,13 +259,15 @@ def updateRow(row_data):
                     stg += headers[i] + '=' + '"' + \
                         str(row_data[element][1][c]) + '"' + ','
                 else:
-                    stg += headers[i] + '=' + str(row_data[element][1][c])
+                    stg += headers[i] + '=' + \
+                        str(row_data[element][1][c]) + ','
                 c += 1
         query += stg
         c += 1
     query = query[0:-1]
     query += f' where id={cond};'
-    print("HIHIHIHIHIH")
+    print("HIIII")
+    print(query)
     cur.execute(query)
     cnx.commit()
 
@@ -283,7 +301,7 @@ data = [
     {
         'name': "Qty",
         'type': "number",
-        'subColumns' : []
+        'subColumns': []
     },
     {'name': "Industry", 'type': "string", 'subColumns': []},
     {
@@ -304,7 +322,6 @@ row_data = {"ID": 1, "Public/NonPublic": "Public", "Qty": 10, "Industry": "Cooki
 ], ["Sweet", "Green", "Pungent"]]}
 
 
-#addRow(row_data)
-#getRow(5)
-#updateRow(row_data)
-
+# addRow(row_data)
+# getRow(5)
+# updateRow(row_data)
